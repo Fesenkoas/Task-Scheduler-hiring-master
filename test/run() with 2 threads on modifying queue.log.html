@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>run() with 2 threads on modifying queue log</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        span {
+            font-size: 75%;
+        }
+
+        span + span {
+            margin-left: 0.4em;
+        }
+
+        span.completed {
+            background: greenyellow;
+        }
+
+        span.running {
+            background: orange; 
+        }
+
+        span.acquired {
+            background: lightgoldenrodyellow; 
+        }
+
+        p {
+            margin: 0;
+        }
+
+        p.all span {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            border: 1px solid black;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 1em;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>run() with 2 threads on modifying queue log</caption>
+        <tr>
+            <th>time</th><th>total</th><th>completed</th><th>acquired</th><th>running</th><th>queued</th><th>map</th>
+        </tr>
+        <tr>
+            <td>0ms (+0ms)</td>
+            <td>5</td>
+            <td>0</td>
+            <td>4</td>
+            <td>1</td>
+            <td>0</td>
+            <td>
+                <p class="all"><span 
+                    title="0:init" 
+                    class="running">0</span><span 
+                    title="0:prepare" 
+                    class="acquired">0</span><span 
+                    title="0:work" 
+                    class="acquired">0</span><span 
+                    title="0:finalize" 
+                    class="acquired">0</span><span 
+                    title="0:cleanup" 
+                    class="acquired">0</span>
+                </p>
+                <p class="target target-0"><span>0:</span><span class="running">init</span><span class="acquired">prepare</span><span class="acquired">work</span><span class="acquired">finalize</span><span class="acquired">cleanup</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>45ms (+45ms)</td>
+            <td>5</td>
+            <td>1</td>
+            <td>3</td>
+            <td>1</td>
+            <td>0</td>
+            <td>
+                <p class="all"><span 
+                    title="0:init" 
+                    class="completed">0</span><span 
+                    title="0:prepare" 
+                    class="running">0</span><span 
+                    title="0:work" 
+                    class="acquired">0</span><span 
+                    title="0:finalize" 
+                    class="acquired">0</span><span 
+                    title="0:cleanup" 
+                    class="acquired">0</span>
+                </p>
+                <p class="target target-0"><span>0:</span><span class="completed">init</span><span class="running">prepare</span><span class="acquired">work</span><span class="acquired">finalize</span><span class="acquired">cleanup</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>152ms (+107ms)</td>
+            <td>5</td>
+            <td>2</td>
+            <td>2</td>
+            <td>1</td>
+            <td>0</td>
+            <td>
+                <p class="all"><span 
+                    title="0:init" 
+                    class="completed">0</span><span 
+                    title="0:prepare" 
+                    class="completed">0</span><span 
+                    title="0:work" 
+                    class="running">0</span><span 
+                    title="0:finalize" 
+                    class="acquired">0</span><span 
+                    title="0:cleanup" 
+                    class="acquired">0</span>
+                </p>
+                <p class="target target-0"><span>0:</span><span class="completed">init</span><span class="completed">prepare</span><span class="running">work</span><span class="acquired">finalize</span><span class="acquired">cleanup</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>371ms (+219ms)</td>
+            <td>5</td>
+            <td>3</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>
+                <p class="all"><span 
+                    title="0:init" 
+                    class="completed">0</span><span 
+                    title="0:prepare" 
+                    class="completed">0</span><span 
+                    title="0:work" 
+                    class="completed">0</span><span 
+                    title="0:finalize" 
+                    class="running">0</span><span 
+                    title="0:cleanup" 
+                    class="acquired">0</span>
+                </p>
+                <p class="target target-0"><span>0:</span><span class="completed">init</span><span class="completed">prepare</span><span class="completed">work</span><span class="running">finalize</span><span class="acquired">cleanup</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>479ms (+108ms)</td>
+            <td>5</td>
+            <td>4</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>
+                <p class="all"><span 
+                    title="0:init" 
+                    class="completed">0</span><span 
+                    title="0:prepare" 
+                    class="completed">0</span><span 
+                    title="0:work" 
+                    class="completed">0</span><span 
+                    title="0:finalize" 
+                    class="completed">0</span><span 
+                    title="0:cleanup" 
+                    class="running">0</span>
+                </p>
+                <p class="target target-0"><span>0:</span><span class="completed">init</span><span class="completed">prepare</span><span class="completed">work</span><span class="completed">finalize</span><span class="running">cleanup</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>540ms (+61ms)</td>
+            <td>20</td>
+            <td>5</td>
+            <td>0</td>
+            <td>0</td>
+            <td>15</td>
+            <td>
+                <p class="all"><span 
+                    title="0:init" 
+                    class="completed">0</span><span 
+                    title="0:prepare" 
+                    class="completed">0</span><span 
+                    title="0:work" 
+                    class="completed">0</span><span 
+                    title="0:finalize" 
+                    class="completed">0</span><span 
+                    title="0:cleanup" 
+                    class="completed">0</span><span 
+                    title="1:init" 
+                    class="">1</span><span 
+                    title="1:prepare" 
+                    class="">1</span><span 
+                    title="1:work" 
+                    class="">1</span><span 
+                    title="1:finalize" 
+                    class="">1</span><span 
+                    title="1:cleanup" 
+                    class="">1</span><span 
+                    title="2:init" 
+                    class="">2</span><span 
+                    title="2:prepare" 
+                    class="">2</span><span 
+                    title="2:work" 
+                    class="">2</span><span 
+                    title="2:finalize" 
+                    class="">2</span><span 
+                    title="2:cleanup" 
+                    class="">2</span><span 
+                    title="3:init" 
+                    class="">3</span><span 
+                    title="3:prepare" 
+                    class="">3</span><span 
+                    title="3:work" 
+                    class="">3</span><span 
+                    title="3:finalize" 
+                    class="">3</span><span 
+                    title="3:cleanup" 
+                    class="">3</span>
+                </p>
+                <p class="target target-0"><span>0:</span><span class="completed">init</span><span class="completed">prepare</span><span class="completed">work</span><span class="completed">finalize</span><span class="completed">cleanup</span>
+                </p>
+                <p class="target target-1"><span>1:</span><span class="">init</span><span class="">prepare</span><span class="">work</span><span class="">finalize</span><span class="">cleanup</span>
+                </p>
+                <p class="target target-2"><span>2:</span><span class="">init</span><span class="">prepare</span><span class="">work</span><span class="">finalize</span><span class="">cleanup</span>
+                </p>
+                <p class="target target-3"><span>3:</span><span class="">init</span><span class="">prepare</span><span class="">work</span><span class="">finalize</span><span class="">cleanup</span>
+                </p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
